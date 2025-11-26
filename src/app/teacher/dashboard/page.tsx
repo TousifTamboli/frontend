@@ -17,6 +17,44 @@ export default function TeacherDashboard() {
     { name: "Update Sports", href: "/teacher/sports", icon: Trophy },
   ]
 
+  const events = [
+    {
+      id: 1,
+      title: "Music Concert",
+      subtitle: "Annual music performance",
+      date: "Dec 28, 2025",
+      description: "Students will showcase their musical talents in various genres including classical, jazz, and contemporary music."
+    },
+    {
+      id: 2,
+      title: "Art Exhibition",
+      subtitle: "Student artwork display",
+      date: "Jan 5, 2026",
+      description: "A collection of paintings, sculptures, and digital art created by our talented students throughout the semester."
+    },
+    {
+      id: 3,
+      title: "Drama Performance",
+      subtitle: "Theater club presentation",
+      date: "Jan 12, 2026",
+      description: "The drama club presents a classic play with modern interpretations. All are welcome to attend."
+    },
+    {
+      id: 4,
+      title: "Career Fair",
+      subtitle: "Industry professionals meet",
+      date: "Jan 18, 2026",
+      description: "Various companies and universities will be present to guide students about career opportunities and higher education."
+    },
+    {
+      id: 5,
+      title: "Debate Competition",
+      subtitle: "Inter-school championship",
+      date: "Jan 25, 2026",
+      description: "Students from different schools will compete in a series of debates on current affairs and social issues."
+    }
+  ]
+
   const notices = [
     {
       id: 1,
@@ -201,7 +239,7 @@ export default function TeacherDashboard() {
             {/* Notices Section */}
             <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-4 sm:mb-6">Notices</h2>
             
-            <div className="overflow-x-auto -mx-4 sm:mx-0 scrollbar-hide">
+            <div className="overflow-x-auto -mx-4 sm:mx-0 scrollbar-hide mb-6 sm:mb-8">
               <div className="flex gap-4 pb-4 px-4 sm:px-0 min-w-min">
                 {notices.map((notice) => (
                   <div
@@ -221,6 +259,34 @@ export default function TeacherDashboard() {
                       <Calendar className="w-4 h-4" />
                       <span>{notice.date}</span>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Events Section */}
+            <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-4 sm:mb-6">Events</h2>
+            
+            <div className="overflow-x-auto -mx-4 sm:mx-0 scrollbar-hide">
+              <div className="flex gap-4 pb-4 px-4 sm:px-0 min-w-min">
+                {events.map((event) => (
+                  <div
+                    key={event.id}
+                    className="flex-shrink-0 w-[280px] sm:w-[300px] h-[280px] sm:h-[300px] bg-white rounded-lg border border-gray-200 shadow-sm p-4 sm:p-6 flex flex-col"
+                  >
+                    <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-2 line-clamp-2">
+                      {event.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-1">
+                      {event.subtitle}
+                    </p>
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-4 pb-3 border-b border-gray-200">
+                      <Calendar className="w-4 h-4" />
+                      <span>{event.date}</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed line-clamp-4 flex-1">
+                      {event.description}
+                    </p>
                   </div>
                 ))}
               </div>
