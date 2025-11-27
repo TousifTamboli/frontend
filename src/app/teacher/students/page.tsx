@@ -1,22 +1,42 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Bell, User, Menu, Users, BookOpen, Award, Trophy, LogOut, Filter } from "lucide-react"
+import { Bell, User, Menu, Users, BookOpen, Award, Trophy, LogOut, Filter, LayoutDashboard } from "lucide-react"
 
 export default function StudentProfilePage() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const [selectedClass, setSelectedClass] = useState("All")
   const [selectedSection, setSelectedSection] = useState("All")
+  const profileRef = useRef<HTMLDivElement>(null)
+  const sidebarRef = useRef<HTMLDivElement>(null)
 
   const menuItems = [
+    { name: "Dashboard", href: "/teacher/dashboard", icon: LayoutDashboard },
     { name: "Student Profile", href: "/teacher/students", icon: Users },
     { name: "Homework", href: "/teacher/homework", icon: BookOpen },
     { name: "Update Scores", href: "/teacher/scores", icon: Award },
     { name: "Update Sports", href: "/teacher/sports", icon: Trophy },
   ]
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setProfileOpen(false)
+      }
+      if (sidebarOpen && sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+        const target = event.target as HTMLElement
+        if (!target.closest('button[aria-label="toggle-sidebar"]')) {
+          setSidebarOpen(false)
+        }
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [sidebarOpen])
 
   const allStudents = [
     { rollNo: 1, name: "John Smith", class: "Grade 10", section: "A" },
@@ -46,6 +66,7 @@ export default function StudentProfilePage() {
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       {/* Sidebar */}
       <aside
+        ref={sidebarRef}
         className={`${
           sidebarOpen ? "w-64" : "w-0"
         } bg-slate-900 text-white transition-all duration-300 overflow-hidden flex-shrink-0`}
@@ -59,6 +80,7 @@ export default function StudentProfilePage() {
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={() => setSidebarOpen(false)}
                   className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors"
                 >
                   <Icon className="w-5 h-5" />
@@ -79,6 +101,7 @@ export default function StudentProfilePage() {
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="toggle-sidebar"
               >
                 <Menu className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
               </button>
@@ -98,7 +121,7 @@ export default function StudentProfilePage() {
                 <span className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 w-2 h-2 bg-red-500 rounded-full"></span>
               </button>
               
-              <div className="relative">
+              <div className="relative" ref={profileRef}>
                 <button 
                   onClick={() => setProfileOpen(!profileOpen)}
                   className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full transition-colors"
