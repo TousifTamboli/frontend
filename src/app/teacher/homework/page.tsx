@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Bell, User, Menu, Users, BookOpen, Award, Trophy, LogOut, Plus, Edit, Trash2, X, Paperclip, LayoutDashboard } from "lucide-react"
+import { Bell, User, Menu, Users, BookOpen, Award, Trophy, LogOut, Plus, Edit, Trash2, X, Paperclip, LayoutDashboard, Calendar } from "lucide-react"
 
 interface Homework {
   id: number
@@ -71,6 +71,8 @@ export default function HomeworkPage() {
     { name: "Student Profile", href: "/teacher/students", icon: Users },
     { name: "Homework", href: "/teacher/homework", icon: BookOpen },
     { name: "Update Scores", href: "/teacher/scores", icon: Award },
+    { name: "Activities", href: "/teacher/activities", icon: BookOpen },
+    { name: "Academic Calendar", href: "/teacher/calendar", icon: Calendar },
     { name: "Update Sports", href: "/teacher/sports", icon: Trophy },
   ]
 
@@ -202,6 +204,13 @@ export default function HomeworkPage() {
                 
                 {profileOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                    <Link
+                      href="/teacher/profile"
+                      className="flex items-center gap-3 w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 transition-colors"
+                    >
+                      <User className="w-5 h-5" />
+                      <span>My Profile</span>
+                    </Link>
                     <button
                       onClick={() => {
                         console.log("Logout clicked")
