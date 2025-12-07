@@ -28,6 +28,7 @@ import {
 export default function FeeDetailsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
+  const [barcodeExpanded, setBarcodeExpanded] = useState(false)
   const profileRef = useRef<HTMLDivElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
 
@@ -39,6 +40,7 @@ export default function FeeDetailsPage() {
     { name: "Homework", href: "/parent/homework", icon: BookOpen },
     { name: "Exams", href: "/parent/exams", icon: GraduationCap },
     { name: "Fee Details", href: "/parent/fees", icon: CreditCard },
+    { name: "Food Menu", href: "/parent/menu", icon: BookOpen },
     { name: "Queries", href: "/parent/queries", icon: MessageSquare },
     { name: "Sports", href: "/parent/sports", icon: Trophy },
     { name: "Admission Details", href: "/parent/admission", icon: ClipboardList },
@@ -326,6 +328,122 @@ export default function FeeDetailsPage() {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            </div>
+
+            {/* Bank Details Section */}
+            <div className="mb-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-4 sm:mb-6">
+                Bank Details for Payment
+              </h3>
+              
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 sm:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Bank Name
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      State Bank of India
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Account Holder Name
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      ABC International School
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Account Number
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      1234567890123456
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      IFSC Code
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      SBIN0001234
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Branch Name
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      Main Branch, City Center
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Account Type
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      Current Account
+                    </p>
+                  </div>
+                </div>
+
+                {/* QR Code Section */}
+                <div className="border-t border-gray-200 pt-6">
+                  <button
+                    onClick={() => setBarcodeExpanded(!barcodeExpanded)}
+                    className="flex items-center justify-between w-full text-left"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-blue-100 rounded-lg">
+                        <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-base font-semibold text-slate-900">
+                          UPI QR Code for Payment
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Scan to pay using any UPI app
+                        </p>
+                      </div>
+                    </div>
+                    <svg 
+                      className={`w-5 h-5 text-gray-600 transition-transform ${barcodeExpanded ? 'rotate-180' : ''}`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {barcodeExpanded && (
+                    <div className="mt-6 flex flex-col items-center">
+                      <div className="bg-white p-4 rounded-lg border-2 border-gray-300">
+                        {/* QR Code Placeholder - Replace with actual QR code generator */}
+                        <div className="w-48 h-48 bg-gray-100 flex items-center justify-center rounded">
+                          <svg className="w-32 h-32 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm-2 8h8v8H3v-8zm2 2v4h4v-4H5zm8-12v8h8V3h-8zm2 2h4v4h-4V5zm4 8h-2v2h2v-2zm-2 2h-2v2h2v-2zm2 2h-2v2h2v-2zm0 2h2v-2h2v2h-2v2h-2v-2zm-4 0h2v2h-2v-2zm2-6h2v2h-2v-2zm0-2h2v2h-2v-2z"/>
+                          </svg>
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600 mt-4 text-center">
+                        UPI ID: <span className="font-semibold text-slate-900">school@sbi</span>
+                      </p>
+                      <p className="text-xs text-gray-500 mt-2 text-center max-w-md">
+                        Please mention student name and installment number in the payment remarks
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

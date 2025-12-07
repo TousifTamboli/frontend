@@ -35,6 +35,7 @@ export default function NoticesPage() {
     { name: "Homework", href: "/parent/homework", icon: BookOpen },
     { name: "Exams", href: "/parent/exams", icon: GraduationCap },
     { name: "Fee Details", href: "/parent/fees", icon: CreditCard },
+    { name: "Food Menu", href: "/parent/menu", icon: BookOpen },
     { name: "Queries", href: "/parent/queries", icon: MessageSquare },
     { name: "Sports", href: "/parent/sports", icon: Trophy },
     { name: "Admission Details", href: "/parent/admission", icon: ClipboardList },
