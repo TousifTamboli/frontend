@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, ReactNode } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { 
@@ -18,10 +18,15 @@ import {
   ClipboardList, 
   Building2, 
   Camera,
-  Award 
+  Award,
+  Utensils
 } from "lucide-react"
 
-export default function StudentProfilePage() {
+interface ParentLayoutProps {
+  children: ReactNode
+}
+
+export default function ParentLayout({ children }: ParentLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const profileRef = useRef<HTMLDivElement>(null)
@@ -36,7 +41,7 @@ export default function StudentProfilePage() {
     { name: "Exams", href: "/parent/exams", icon: GraduationCap },
     { name: "Report Card", href: "/parent/reportcard", icon: Award },
     { name: "Fee Details", href: "/parent/fees", icon: CreditCard },
-    { name: "Food Menu", href: "/parent/menu", icon: BookOpen },
+    { name: "Food Menu", href: "/parent/menu", icon: Utensils },
     { name: "Gallery", href: "/parent/gallery", icon: Camera },
     { name: "Queries", href: "/parent/queries", icon: MessageSquare },
     { name: "Sports", href: "/parent/sports", icon: Trophy },
@@ -150,78 +155,7 @@ export default function StudentProfilePage() {
 
         {/* Main Content Area */}
         <main className="flex-1 overflow-auto">
-          <div className="p-4 sm:p-6 lg:p-8">
-            <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-6 sm:mb-8">
-              Student Profile
-            </h2>
-
-            {/* Student Profile Section */}
-            <div className="mb-8 sm:mb-12">
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 sm:p-8">
-                <div className="space-y-6">
-                  {/* Full Name */}
-                  <div className="border-b border-gray-200 pb-4">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">
-                      Full Name
-                    </label>
-                    <p className="text-base font-semibold text-slate-900">
-                      John Michael Smith
-                    </p>
-                  </div>
-
-                  {/* Date of Birth */}
-                  <div className="border-b border-gray-200 pb-4">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">
-                      Date of Birth
-                    </label>
-                    <p className="text-base font-semibold text-slate-900">
-                      March 15, 2010
-                    </p>
-                  </div>
-                  
-                  {/* Blood Group */}
-                  <div className="border-b border-gray-200 pb-4">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">
-                      Blood Group
-                    </label>
-                    <p className="text-base font-semibold text-slate-900">
-                      Z-
-                    </p>
-                  </div>
-
-                  {/* Gender */}
-                  <div className="border-b border-gray-200 pb-4">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">
-                      Gender
-                    </label>
-                    <p className="text-base font-semibold text-slate-900">
-                      Male
-                    </p>
-                  </div>
-
-                  {/* Mobile */}
-                  <div className="border-b border-gray-200 pb-4">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">
-                      Mobile
-                    </label>
-                    <p className="text-base font-semibold text-slate-900">
-                      +91 98765 43210
-                    </p>
-                  </div>
-
-                  {/* Parent Email */}
-                  <div className="pb-4">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">
-                      Parent Email
-                    </label>
-                    <p className="text-base font-semibold text-slate-900">
-                      parent@example.com
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {children}
         </main>
       </div>
     </div>

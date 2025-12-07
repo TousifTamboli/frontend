@@ -18,7 +18,8 @@ import {
   ClipboardList, 
   Building2, 
   Camera,
-  Utensils
+  Utensils,
+  Award
 } from "lucide-react"
 
 export default function FoodMenuPage() {
@@ -81,8 +82,10 @@ export default function FoodMenuPage() {
     { name: "Notices", href: "/parent/notices", icon: FileText },
     { name: "Homework", href: "/parent/homework", icon: BookOpen },
     { name: "Exams", href: "/parent/exams", icon: GraduationCap },
+    { name: "Report Card", href: "/parent/reportcard", icon: Award },
     { name: "Fee Details", href: "/parent/fees", icon: CreditCard },
     { name: "Food Menu", href: "/parent/menu", icon: Utensils },
+    { name: "Gallery", href: "/parent/gallery", icon: Camera },
     { name: "Queries", href: "/parent/queries", icon: MessageSquare },
     { name: "Sports", href: "/parent/sports", icon: Trophy },
     { name: "Admission Details", href: "/parent/admission", icon: ClipboardList },
@@ -116,7 +119,7 @@ export default function FoodMenuPage() {
           sidebarOpen ? "w-64" : "w-0"
         } bg-slate-900 text-white transition-all duration-300 overflow-hidden flex-shrink-0`}
       >
-        <div className="p-6">
+        <div className="h-full overflow-y-auto p-6">
           <h2 className="text-xl font-semibold mb-8">Parent Portal</h2>
           <nav className="space-y-2">
             {menuItems.map((item) => {
