@@ -32,12 +32,14 @@ export default function FeeDetailsPage() {
   const sidebarRef = useRef<HTMLDivElement>(null)
 
   const menuItems = [
-    { name: "Child Profile", href: "/parent/dashboard", icon: UserCircle },
+    { name: "Students dashboard", href: "/parent/dashboard", icon: UserCircle },
+    { name: "Student Profile", href: "/parent/profile", icon: User },
+    { name: "Enrollment Details", href: "/parent/enrollment", icon: ClipboardList },
     { name: "Notices", href: "/parent/notices", icon: FileText },
     { name: "Homework", href: "/parent/homework", icon: BookOpen },
     { name: "Exams", href: "/parent/exams", icon: GraduationCap },
     { name: "Fee Details", href: "/parent/fees", icon: CreditCard },
-    { name: "Enquiries", href: "/parent/enquiries", icon: MessageSquare },
+    { name: "Queries", href: "/parent/queries", icon: MessageSquare },
     { name: "Sports", href: "/parent/sports", icon: Trophy },
     { name: "Admission Details", href: "/parent/admission", icon: ClipboardList },
     { name: "Franchise Details", href: "/parent/franchise", icon: Building2 },

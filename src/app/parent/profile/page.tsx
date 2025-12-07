@@ -17,25 +17,24 @@ import {
   Trophy, 
   ClipboardList, 
   Building2, 
-  Camera,
-  Send
+  Camera 
 } from "lucide-react"
 
-export default function EnquiriesPage() {
+export default function StudentProfilePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
   const profileRef = useRef<HTMLDivElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
 
   const menuItems = [
-    { name: "Child Profile", href: "/parent/dashboard", icon: UserCircle },
+    { name: "Students dashboard", href: "/parent/dashboard", icon: UserCircle },
+    { name: "Student Profile", href: "/parent/profile", icon: User },
+    { name: "Enrollment Details", href: "/parent/enrollment", icon: ClipboardList },
     { name: "Notices", href: "/parent/notices", icon: FileText },
     { name: "Homework", href: "/parent/homework", icon: BookOpen },
     { name: "Exams", href: "/parent/exams", icon: GraduationCap },
     { name: "Fee Details", href: "/parent/fees", icon: CreditCard },
-    { name: "Enquiries", href: "/parent/enquiries", icon: MessageSquare },
+    { name: "Queries", href: "/parent/queries", icon: MessageSquare },
     { name: "Sports", href: "/parent/sports", icon: Trophy },
     { name: "Admission Details", href: "/parent/admission", icon: ClipboardList },
     { name: "Franchise Details", href: "/parent/franchise", icon: Building2 },
@@ -58,15 +57,6 @@ export default function EnquiriesPage() {
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [sidebarOpen])
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Backend integration will go here
-    console.log("Enquiry submitted:", { title, description })
-    alert("Your enquiry has been submitted successfully!")
-    setTitle("")
-    setDescription("")
-  }
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
@@ -157,66 +147,71 @@ export default function EnquiriesPage() {
         {/* Main Content Area */}
         <main className="flex-1 overflow-auto">
           <div className="p-4 sm:p-6 lg:p-8">
-            <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-2">
-              Enquiries
+            <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-6 sm:mb-8">
+              Student Profile
             </h2>
-            <p className="text-sm text-gray-600 mb-6 sm:mb-8">
-              Have a question or concern? Send us your enquiry and we'll get back to you soon.
-            </p>
-            
-            {/* Enquiry Form */}
-            <div className="max-w-3xl">
+
+            {/* Student Profile Section */}
+            <div className="mb-8 sm:mb-12">
               <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 sm:p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-900 mb-2">
-                      Title <span className="text-red-500">*</span>
+                <div className="space-y-6">
+                  {/* Full Name */}
+                  <div className="border-b border-gray-200 pb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Full Name
                     </label>
-                    <input
-                      type="text"
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 text-sm text-gray-700 hover:border-gray-300 transition-colors"
-                      placeholder="Enter enquiry title"
-                      required
-                    />
+                    <p className="text-base font-semibold text-slate-900">
+                      John Michael Smith
+                    </p>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-900 mb-2">
-                      Description <span className="text-red-500">*</span>
+                  {/* Date of Birth */}
+                  <div className="border-b border-gray-200 pb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Date of Birth
                     </label>
-                    <textarea
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 text-sm text-gray-700 hover:border-gray-300 transition-colors resize-none"
-                      placeholder="Describe your enquiry in detail"
-                      rows={6}
-                      required
-                    />
+                    <p className="text-base font-semibold text-slate-900">
+                      March 15, 2010
+                    </p>
+                  </div>
+                  
+                  {/* Blood Group */}
+                  <div className="border-b border-gray-200 pb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Blood Group
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      Z-
+                    </p>
                   </div>
 
-                  <button
-                    type="submit"
-                    className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium text-sm"
-                  >
-                    <Send className="w-5 h-5" />
-                    Send Enquiry
-                  </button>
-                </form>
-              </div>
+                  {/* Gender */}
+                  <div className="border-b border-gray-200 pb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Gender
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      Male
+                    </p>
+                  </div>
 
-              {/* Info Box */}
-              <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <div className="flex gap-3">
-                  <MessageSquare className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-semibold text-blue-900 mb-1">
-                      Response Time
-                    </h4>
-                    <p className="text-sm text-blue-700">
-                      We typically respond to enquiries within 24-48 hours during working days. 
-                      For urgent matters, please contact the school office directly.
+                  {/* Mobile */}
+                  <div className="border-b border-gray-200 pb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Mobile
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      +91 98765 43210
+                    </p>
+                  </div>
+
+                  {/* Parent Email */}
+                  <div className="pb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Parent Email
+                    </label>
+                    <p className="text-base font-semibold text-slate-900">
+                      parent@example.com
                     </p>
                   </div>
                 </div>
